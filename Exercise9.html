@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script  id="script" src="./Baby_name_Short.js"></script>
+    <style>
+        input{width: 200px;}
+        #name_table {width:80px;}
+        button{width: 100px;}
+    </style>
+</head>
+<body onload="table();">
+    <input id="va" type="text" placeholder="Use a space to seperate">
+    <button onclick="does();">Add a name.</button>
+    <p id="name"></p>
+    <table id="name_table" oncopy="cop();">
+        <tr>
+            <td align="center"><b>Names</b></td>
+        </tr>
+    </table>
+    <script>
+        var b=0;
+        function table(){
+            var myArray=Baby_Name_List.split(",");
+            var a=0;
+            for(var i=0;i<myArray.length;i++){
+                var tr=document.createElement("tr");
+                var mytable=document.getElementById("name_table");
+                mytable.appendChild(tr);
+                var texnode=document.createTextNode(myArray[a]);
+                    var td=document.createElement("td");
+                    td.appendChild(texnode);
+                    mytable.appendChild(td);
+                    a++;
+                    b++;
+            }
+            document.getElementById("name").innerHTML=b+" names in the table";
+            mytable.setAttribute("border","1");
+            console.log(i);
+        }
+        function does(){
+            var c=document.getElementById("va").value;
+            if (c.indexOf(' ')<=0){
+                console.log(c)
+                console.log(c.indexOf(' '));
+                alert("Wrong input");
+            }else{
+                var tr=document.createElement("tr");
+                var name = c.trim().split(' ')[0];
+                var table = document.getElementById("name_table");
+                var row = table.insertRow(-1);
+                var cell = row.insertCell(0);
+                table.appendChild(tr);
+                var texnode=document.createTextNode(name);
+                var td=document.createElement("td");
+                td.appendChild(texnode);
+                table.appendChild(td);
+                b++;
+                document.getElementById("name").innerHTML=b+" names in the table";
+            }
+            document.getElementById("va").value="";
+        }
+        function cop(x){
+            var v=window.getSelection();
+            alert(v+" is copied!");
+        }
+        function check(){
+            va=document.getElementById("va").value;
+            if (va.indexOf('')<=0){
+                console.log(va)
+                console.log(va.indexOf(''));
+                alert("Wrong input");
+            }
+        }
+
+    </script>
+</body>
+</html>
